@@ -1,0 +1,79 @@
+# 🟢 Môi Trường NodeJS & NPM
+
+Cách chạy các ứng dụng JavaScript, React, Vue, Express...
+
+---
+
+## 1. Kiểm tra môi trường
+*   **Xem phiên bản Node:** `node -v`
+*   **Xem phiên bản NPM:** `npm -v`
+
+## 2. Chạy file JavaScript thuần (`node`)
+*   **Cú pháp:** `node <tên_file.js>`
+*   **Ví dụ:** `node index.js` (Lệnh này sẽ chạy file và in kết quả ra màn hình terminal).
+
+## 3. Khởi tạo dự án NPM (`npm init`)
+*   **Ý nghĩa:** Tạo file `package.json` để quản lý thông tin dự án và các thư viện cần dùng.
+*   **Tạo và trả lời từng câu hỏi:** `npm init`
+*   **Tạo nhanh bỏ qua câu hỏi:** `npm init -y`
+
+## 4. Cài đặt thư viện (`npm install` hoặc `npm i`)
+*   **Cài toàn bộ thư viện (Dựa trên package.json có sẵn):** `npm install` (Thường dùng sau khi vừa `git clone` project về).
+*   **Cài một thư viện mới:** `npm i <tên_thư_viện>` (ví dụ: `npm i express`).
+*   **Cài thư viện chỉ cho môi trường Dev:** `npm i <tên_thư_viện> -D` (ví dụ: `npm i nodemon -D`).
+
+## 5. Chạy các kịch bản trong package.json (`npm run`)
+*   **Ý nghĩa:** Chạy các lệnh được định nghĩa trong mục `"scripts"` của file `package.json`.
+*   **Cú pháp:** `npm run <tên_script>`
+*   **Ví dụ phổ biến:** `npm run dev`, `npm run build`, `npm run start`.
+
+
+# 🚀 Quản Lý NPM Nâng Cao (Advanced NPM)
+
+Tập hợp các lệnh nâng cao để tối ưu kịch bản (scripts), sửa lỗi bảo mật, quản lý phiên bản và dọn dẹp bộ nhớ trên điện thoại.
+
+---
+
+## 1. Thực thi Package nhanh không cần cài (`npx`)
+*   **Ý nghĩa:** Node Package Execute - Tự động tải phiên bản mới nhất của một công cụ về, chạy nó một lần duy nhất rồi tự xóa đi. Rất có lợi cho bộ nhớ điện thoại vì không làm tốn dung lượng lưu trữ lâu dài.
+*   **Cú pháp:** `npx <tên_package> [tham_số]`
+*   **Ví dụ thực tế:**
+    *   Tạo nhanh một dự án React: `npx create-react-app my-app`
+    *   Tạo nhanh một dự án Vite (React/Vue): `npx create-vite my-project --template react`
+    *   Biến thư mục hiện tại thành một web server để test nhanh: `npx serve`
+
+## 2. Cài đặt nghiêm ngặt cho Production / Team (`npm ci`)
+*   **Ý nghĩa:** Clean Install - Khác với `npm install` (có thể tự cập nhật package lên bản mới hơn), `npm ci` sẽ xóa sạch thư mục `node_modules` cũ và cài **chính xác 100%** theo các phiên bản được khóa trong file `package-lock.json`.
+*   **Ưu điểm:** Tốc độ cài đặt nhanh hơn `npm install` và đảm bảo code không bị lỗi do thư viện tự động cập nhật phiên bản mới.
+*   **Cú pháp:** `npm ci`
+
+## 3. Tối ưu hóa bộ nhớ trên điện thoại (Quan trọng!)
+Khi code trên điện thoại, thư mục `node_modules` và bộ nhớ đệm (cache) rất dễ làm đầy bộ nhớ máy. Hãy dùng các lệnh sau để dọn dẹp:
+
+*   **Xóa các thư viện thừa (`npm prune`):** Tìm và xóa bỏ tất cả các package có trong `node_modules` nhưng không được khai báo trong file `package-json` (ví dụ sau khi bạn xóa bớt thư viện thủ công).
+    *   Cú pháp: `npm prune`
+*   **Dọn dẹp bộ nhớ đệm (`npm cache clean`):** NPM luôn lưu lại file đã tải để lần sau cài cho nhanh, nhưng nó chiếm rất nhiều dung lượng.
+    *   Cú pháp: `npm cache clean --force`
+*   **Kiểm tra xem bộ nhớ đệm có lỗi không:** `npm cache verify`
+
+## 4. Quản lý và kiểm tra bảo mật (`npm audit`)
+*   **Kiểm tra lỗ hổng bảo mật:** Quét toàn bộ các thư viện đang dùng xem có cái nào bị cảnh báo bảo mật nguy hiểm hay không.
+    *   Cú pháp: `npm audit`
+*   **Tự động sửa lỗi bảo mật:** NPM sẽ tự động cập nhật các thư viện bị lỗi lên phiên bản an toàn hơn mà không làm hỏng cấu trúc code hiện tại.
+    *   Cú pháp: `npm audit fix`
+*   **Ép buộc sửa lỗi (Cẩn thận!):** Nâng cấp bất chấp, có thể gây xung đột code cũ.
+    *   Cú pháp: `npm audit fix --force`
+
+## 5. Mẹo viết Script nâng cao trong `package.json`
+Bạn có thể chuỗi các lệnh lại với nhau trong mục `"scripts"` của file `package.json` để chạy bằng một lệnh duy nhất:
+
+*   **Chạy nối tiếp (`&&`):** Lệnh trước chạy thành công thì lệnh sau mới chạy.
+    *   *Ví dụ:* `"build-and-run": "npm run build && node dist/index.js"`
+*   **Truyền tham số vào script:** Khi chạy lệnh, nếu muốn truyền thêm tham số vào công cụ bên trong, bạn phải dùng dấu `--`.
+    *   *Ví dụ:* Nếu cấu hình `"test": "jest"`, bạn muốn chạy test và bật chế độ theo dõi thay đổi thì gõ: `npm run test -- --watch`
+
+## 6. Thay đổi Server tải để tăng tốc (`Registry`)
+Nếu mạng yếu hoặc sever mặc định của NPM bị chậm, bạn có thể đổi sang server mirror (ví dụ của bên thứ ba uy tín) để tải thư viện nhanh gấp nhiều lần.
+*   **Đổi sang Registry nhanh hơn:** `npm config set registry https://registry.npmmirror.com` (Server mirror rất nhanh).
+*   **Kiểm tra Registry hiện tại:** `npm config get registry`
+*   **Quay về mặc định:** `npm config set registry https://registry.npmjs.org`
