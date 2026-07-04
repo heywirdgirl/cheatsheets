@@ -1,5 +1,13 @@
 
 Khuyên dùng: Hãy ưu tiên dùng pnpm thay vì npm mặc định để tiết kiệm tối đa bộ nhớ Android.
+
+# Lệnh 1: Cài đặt Node.js (Nếu bạn đã cài ở bước trước rồi thì bỏ qua)
+pkg install nodejs -y
+
+# Lệnh 2: Dùng npm đi kèm để cài đặt pnpm ra toàn hệ thống (Global)
+npm install -g pnpm
+
+
 1. Khởi Tạo & Quản Lý Thư Viện (NPM / PNPM)
 Đây là nhóm lệnh dùng để cài đặt, gỡ bỏ và quản lý các package (thư viện) trong dự án Next.js của bạn.
 Khởi tạo dự án mới hoàn toàn
@@ -28,6 +36,7 @@ Nhóm lệnh này dùng để vận hành dự án Next.js sau khi bạn đã di
 # 1. Chạy server ở chế độ Development (Để vừa sửa code ở Acode vừa xem thay đổi trên trình duyệt)
 pnpm dev
 
+--webpack
 # 2. Biên dịch dự án thành sản phẩm hoàn chỉnh (Kiểm tra lỗi Type, tối ưu hóa code trước khi deploy)
 pnpm build
 
