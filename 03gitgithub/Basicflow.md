@@ -6,13 +6,13 @@ Các lệnh cốt lõi thay thế hoàn toàn app MGit. Dùng để lấy code v
 
 ## 1. Cấu hình ban đầu (Chỉ làm 1 lần)
 Trước khi commit lần đầu, bạn phải khai báo tên và email để Git biết ai là tác giả đoạn code.
-git config --global user.name "a71acode"
+git config --global user.name "a71termux"
 git config --global user.email "awsmydream@gmail.com"
 
 ## 2. Lấy code từ GitHub về (`clone`)
 *   **Ý nghĩa:** Tải toàn bộ mã nguồn từ một kho (repository) trên mạng về terminal.
 *   **Cú pháp:** `git clone <URL_của_repo>`
-*   **Ví dụ:** `git clone https://github.com/foxdebug/acode.git`
+   git clone git@github.com:heywirdgirl/cheatsheets.git
 
 ## 3. Khởi tạo kho chứa mới (`init`)
 *   **Ý nghĩa:** Biến một thư mục bình thường thành một Git repository để bắt đầu theo dõi file.
@@ -42,7 +42,7 @@ git config --global user.email "awsmydream@gmail.com"
 *   **Ý nghĩa:** Tải các thay đổi (do người khác làm hoặc bạn làm trên máy tính khác) từ GitHub về điện thoại.
 *   **Cú pháp:** `git pull`
 
-   apk update && apk add openssh
+   pkg update && pkg install openssh
 
    ssh-keygen -t ed25519 -C "awsmydream@gmail.com"
 

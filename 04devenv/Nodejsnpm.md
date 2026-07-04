@@ -1,3 +1,73 @@
+
+Khuyên dùng: Hãy ưu tiên dùng pnpm thay vì npm mặc định để tiết kiệm tối đa bộ nhớ Android.
+1. Khởi Tạo & Quản Lý Thư Viện (NPM / PNPM)
+Đây là nhóm lệnh dùng để cài đặt, gỡ bỏ và quản lý các package (thư viện) trong dự án Next.js của bạn.
+Khởi tạo dự án mới hoàn toàn
+# Tạo một dự án Next.js mới bằng pnpm (Mồi mạng để chạy lần đầu)
+pnpm create next-app@latest
+
+# Hoặc khởi tạo một file package.json trống cho dự án tự chế
+pnpm init
+
+Cài đặt thư viện (Install Packages)
+# Cài đặt lại toàn bộ thư viện ghi trong file package.json (Khi vừa clone dự án từ GitHub về)
+pnpm install
+
+# Thêm một thư viện mới vào dự án (Ví dụ: tailwindcss, lucide-react)
+pnpm add <tên_thư_viện>
+
+# Thêm thư viện chỉ dùng lúc Code/Dev, không dùng khi chạy thật (Dependencies vs DevDependencies)
+pnpm add -D <tên_thư_viện>
+
+Gỡ bỏ thư viện (Uninstall)
+# Xóa một thư viện khỏi dự án
+pnpm remove <tên_thư_viện>
+
+2. Các Lệnh Điều Khiển Dự Án Next.js
+Nhóm lệnh này dùng để vận hành dự án Next.js sau khi bạn đã di chuyển vào đúng thư mục code (cd /sdcard/Download/tên_dự_án).
+# 1. Chạy server ở chế độ Development (Để vừa sửa code ở Acode vừa xem thay đổi trên trình duyệt)
+pnpm dev
+
+# 2. Biên dịch dự án thành sản phẩm hoàn chỉnh (Kiểm tra lỗi Type, tối ưu hóa code trước khi deploy)
+pnpm build
+
+# 3. Chạy thử sản phẩm sau khi đã Build xong (Chế độ Production Local)
+pnpm start
+
+3. Quản Lý Môi Trường Ảo / Phiên Bản Node.js (nvm)
+Next.js cập nhật rất nhanh. Dự án cũ có thể bắt dùng Node v18, nhưng dự án Next.js mới lại bắt dùng Node v20 hoặc v22. Để đổi qua lại giữa các phiên bản Node.js trên Termux mà không bị lỗi, chúng ta dùng công cụ NVM (Node Version Manager) – đây chính là "môi trường ảo" của dân Web.
+(Cài đặt nvm lần đầu bằng lệnh: curl -o- [https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh](https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh) | bash)
+# 1. Xem danh sách các phiên bản Node.js đang có sẵn trên mạng để tải
+nvm ls-remote
+
+# 2. Cài đặt một phiên bản Node.js cụ thể (Ví dụ cài bản v20)
+nvm install 20
+
+# 3. Kiểm tra xem trong máy đã cài những phiên bản Node nào
+nvm ls
+
+# 4. Kích hoạt môi trường ảo Node v18 cho dự án cũ
+nvm use 18
+
+# 5. Đặt phiên bản mặc định mỗi khi mở Termux lên là Node v20
+nvm alias default 20
+
+4. Bảo Trì & Tối Ưu Dung Lượng (Dọn rác dự án)
+Lập trình Next.js trên điện thoại rất dễ bị đầy bộ nhớ nếu không biết các lệnh dọn dẹp này:
+# Xóa sạch kho lưu trữ chung của pnpm (Tìm và xóa các thư viện rác lâu ngày không dùng đến)
+pnpm store prune
+
+# Lệnh xóa nhanh thư mục node_modules khi dự án bị lỗi hoặc muốn dọn dẹp để lưu trữ offline
+rm -rf node_modules .next
+
+# Mẹo kiểm tra xem thư mục node_modules hiện tại đang nặng bao nhiêu MB
+du -sh node_modules
+
+
+
+
+
+
 # 🟢 Môi Trường NodeJS & NPM
 
 Cách chạy các ứng dụng JavaScript, React, Vue, Express...
@@ -77,3 +147,4 @@ Nếu mạng yếu hoặc sever mặc định của NPM bị chậm, bạn có t
 *   **Đổi sang Registry nhanh hơn:** `npm config set registry https://registry.npmmirror.com` (Server mirror rất nhanh).
 *   **Kiểm tra Registry hiện tại:** `npm config get registry`
 *   **Quay về mặc định:** `npm config set registry https://registry.npmjs.org`
+

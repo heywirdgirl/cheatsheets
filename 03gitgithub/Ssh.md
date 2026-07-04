@@ -1,0 +1,3 @@
+a71termux
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMoiF7mN46ZN05tV/OeC5HBfFhYmXM0oJI+nTaON623b awsmydream@gmail.com

@@ -29,42 +29,32 @@ termux-setup-storage
 > 
 
 
+Quản Lý Phần Mềm Bằng PKG (Termux Package Manager)
+pkg là trình quản lý gói mặc định của Termux (thực chất là một lớp bọc thân thiện cho lệnh apt quen thuộc trên Ubuntu/Debian). Trong môi trường Termux, hệ thống đã tự cấp toàn quyền cài đặt trong phân vùng của app nên bạn không cần gõ sudo trước lệnh.
+1. Cập cập nhật danh sách gói (pkg update)
+ * Ý nghĩa: Tải về danh sách phần mềm mới nhất từ máy chủ của Termux và nâng cấp các công cụ cũ. Luôn chạy chuỗi lệnh này trước khi muốn cài bất kỳ phần mềm nào để tránh lỗi không tìm thấy gói hoặc xung đột phiên bản.
+ * Cú pháp:
+   pkg update && pkg upgrade
 
-
-
-# 📦 Quản Lý Phần Mềm Bằng APK (Alpine Package Keeper)
-
-`apk` là trình quản lý gói mặc định của Alpine Linux (tương tự như `apt` trên Ubuntu hay `brew` trên Mac). Trong Acode Terminal, bạn luôn ở quyền cao nhất nên **không cần gõ `sudo`** trước lệnh.
-
----
-
-## 1. Cập nhật danh sách gói (`apk update`)
-*   **Ý nghĩa:** Tải về danh sách phần mềm mới nhất từ máy chủ của Alpine. Luôn chạy lệnh này trước khi muốn cài bất kỳ phần mềm nào để tránh lỗi không tìm thấy gói.
-*   **Cú pháp:** `apk update`
-*    apk update && apk upgrade   
-
-## 2. Tìm kiếm phần mềm (`apk search`)
-*   **Ý nghĩa:** Tìm xem phần mềm hoặc công cụ bạn cần có sẵn trong kho của Alpine hay không.
-*   **Cú pháp:** `apk search <tên_phần_mềm>`
-*   **Ví dụ:** `apk search python3`
-
-## 3. Cài đặt phần mềm mới (`apk add`)
-*   **Ý nghĩa:** Tải và cài đặt phần mềm vào terminal.
-*   **Cú pháp:** `apk add <tên_gói_1> <tên_gói_2>`
-*   **Các gói phổ biến cho dân dev:**
-    *   Cài NodeJS và NPM: `apk add nodejs npm`
-    *   Cài Python 3 và Pip: `apk add python3 py3-pip`
-    *   Cài Git: `apk add git`
-    *   Cài Curl (để tải file từ link): `apk add curl`
-    *   Cài công cụ build C/C++ (để sửa lỗi khi cài một số package node/python nặng): `apk add build-base`
-
-## 4. Gỡ bỏ phần mềm (`apk del`)
-*   **Ý nghĩa:** Delete - Xóa phần mềm khỏi hệ thống để giải phóng dung lượng cho điện thoại.
-*   **Cú pháp:** `apk del <tên_phần_mềm>`
-*   **Ví dụ:** `apk del python3`
-
-## 5. Xem thông tin các gói đã cài (`apk info`)
-*   **Ý nghĩa:** Liệt kê các phần mềm đang có trên hệ thống hoặc kiểm tra chi tiết một gói.
-*   **Cú pháp:** 
-    *   `apk info` (Xem toàn bộ danh sách đã cài).
-    *   `apk info <tên_phần_mềm>` (Xem chi tiết phiên bản, dung lượng của phần mềm đó).
+2. Tìm kiếm phần mềm (pkg search)
+ * Ý nghĩa: Tìm xem phần mềm hoặc công cụ bạn cần có sẵn trong kho lưu trữ của Termux hay không.
+ * Cú pháp: pkg search <tên_phần_mềm>
+ * Ví dụ: pkg search python
+3. Cài đặt phần mềm mới (pkg install)
+ * Ý nghĩa: Tải và cài đặt phần mềm/môi trường vào Termux.
+ * Cú pháp: pkg install <tên_gói_1> <tên_gói_2>
+ * Các gói phổ biến cho dân dev:
+   * Cài NodeJS: pkg install nodejs (Trong Termux, gói này đã tích hợp sẵn cả NPM và Corepack, không cần cài tách rời).
+   * Cài Python 3: pkg install python (Tự động đi kèm trình quản lý gói pip).
+   * Cài Git: pkg install git
+   * Cài Curl: pkg install curl (Dùng để tải file hoặc gọi API).
+   * Cài công cụ build C/C++: pkg install build-essential (Cực kỳ quan trọng, dùng để biên dịch và sửa lỗi khi bạn cài các package Node.js nặng hoặc các thư viện Python cần build từ mã nguồn gốc).
+4. Gỡ bỏ phần mềm (pkg uninstall)
+ * Ý nghĩa: Xóa bỏ hoàn toàn phần mềm khỏi Termux để lấy lại dung lượng trống cho điện thoại.
+ * Cú pháp: pkg uninstall <tên_phần_mềm> (Hoặc dùng pkg remove <tên_phần_mềm>)
+ * Ví dụ: pkg uninstall python
+5. Xem thông tin các gói đã cài (pkg list-installed / pkg show)
+ * Ý nghĩa: Liệt kê các phần mềm đang có trên hệ thống hoặc xem thông tin chi tiết của một gói cụ thể.
+ * Cú pháp:
+   * pkg list-installed (Xem toàn bộ danh sách các phần mềm đã cài vào Termux).
+   * pkg show <tên_phần_mềm> (Xem chi tiết phiên bản, mô tả và dung lượng của phần mềm đó).
