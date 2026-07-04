@@ -4,3 +4,7 @@
    
    
    npx shadcn@latest add --all
+
+   pnpm dlx shadcn@latest add --all
+
+   
