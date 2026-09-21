@@ -1,0 +1,35 @@
+cd supabase/migrations
+
+touch "supabase/migrations/$(date -u +%Y%m%d%H%M%S)_fix_page_id_type.sql"
+
+
+
+// .github/workflows
+
+
+
+name: Supabase Migration
+
+on:
+  push:
+    branches: [ migration ]
+    paths:
+      - 'supabase/migrations/**'  # Chỉ kích hoạt khi có thay đổi ở đây
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Run db push
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+        run: |
+          supabase link --project-ref yvgcoiajenurqhctirwp
+          supabase db push

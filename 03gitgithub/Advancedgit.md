@@ -32,6 +32,22 @@ Dành cho làm việc nhóm, chia nhánh tính năng và xử lý sự cố.
 *   **Lấy lại code đã cất:** `git stash pop`
 
 
+
+# 1. Hủy bỏ trạng thái merge dang dở
+git merge --abort
+
+# 2. Ép nhánh hiện tại về chính xác trạng thái của master
+git reset --hard master
+
+# 1. Cập nhật master mới nhất từ remote server về máy
+git fetch origin
+
+# 2. Đưa nhánh phụ hiện tại về đúng vị trí của origin/master
+git reset --hard origin/master
+
+
+
+
 Nếu bạn không còn nhu cầu dùng đến dự án đó ở máy cục bộ (local) nữa, bạn cứ xoá thư mục đó như bình thường (chuột phải chọn Delete hoặc dùng lệnh rm -rf) là xong nhé!
 
 1. Nhóm "Cứu nguy" (Khi lỡ tay làm sai)
